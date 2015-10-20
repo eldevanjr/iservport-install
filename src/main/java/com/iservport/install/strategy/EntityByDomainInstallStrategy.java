@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.helianto.core.domain.Entity;
-import org.helianto.core.domain.Identity;
 import org.helianto.core.domain.Signup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
