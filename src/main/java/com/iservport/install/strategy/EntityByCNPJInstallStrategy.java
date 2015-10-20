@@ -28,9 +28,9 @@ public class EntityByCNPJInstallStrategy
 		if (params!=null && params.length>0 && params[0] instanceof Signup) {
 			Signup form = (Signup) params[0];
 			List<Entity> entityList = new ArrayList<>();
-			
-			if(form.getDomain().contains(".")){
-				String[] parts = form.getDomain().replace(".", "").split("/");
+			String newAlias = form.getAlias();
+			if(form.getAlias().contains(".")){
+				String[] parts = form.getAlias().replace(".", "").split("/");
 				Integer toInteger = Integer.parseInt(parts[0]);
 				String alias = Integer.toHexString(toInteger); 
 				if (parts.length>1) {
@@ -39,14 +39,14 @@ public class EntityByCNPJInstallStrategy
 					if(tail >1){
 						alias += ":"+Integer.toHexString(tail);
 					}
-					form.setDomain(alias.toUpperCase());
+					newAlias = alias.toUpperCase();
 				}
 				else {
 					// TODO processar sem os separadores
 					throw new IllegalArgumentException("CNPJ must match 00.000.000/0000-00 format.");
 				}
 			}
-			Entity prototype = createPrototype(form.getDomain(), form.getFirstName(), 'C');
+			Entity prototype = createPrototype(newAlias, form);
 			logger.info("Created prototype from CNPJ as {}.", prototype);
 			entityList.add(prototype);
 			//retorna entidade
