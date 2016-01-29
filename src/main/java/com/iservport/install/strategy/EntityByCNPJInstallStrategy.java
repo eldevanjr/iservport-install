@@ -33,7 +33,8 @@ public class EntityByCNPJInstallStrategy
 			String newAlias = form.getAlias();
 			if(form.getAlias().contains(".")){
 				newAlias = getNewAlias(form.getAlias());
-			}else {
+			}
+			else {
 				try {
 					MaskFormatter mask = new MaskFormatter("##.###.###/####-##");
 					mask.setValueContainsLiteralCharacters(false);
